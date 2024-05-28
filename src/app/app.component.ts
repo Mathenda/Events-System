@@ -1,19 +1,21 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { NxWelcomeComponent } from './nx-welcome.component';
+// import { Component, OnInit } from '@angular/core';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   standalone: true,
-  imports: [RouterModule],
+  imports: [NxWelcomeComponent, RouterModule],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  encapsulation: ViewEncapsulation.Emulated
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Events-System';
-  isDrawerThin = false;
+  constructor(private primengConfig: PrimeNGConfig) {}
 
-  toggleDrawer() {
-    this.isDrawerThin = !this.isDrawerThin;
+  ngOnInit() {
+    this.primengConfig.ripple = true;
   }
 }
